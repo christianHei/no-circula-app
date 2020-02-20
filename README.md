@@ -1,7 +1,7 @@
 # NoCirculaApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.0.
-To test this project You must download my springboot non-circula project.
+To test this project You must download my springboot no-circula project.
 This project creates, updates and deletes records using REST services.
 
 ## Development server
