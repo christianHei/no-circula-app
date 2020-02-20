@@ -1,0 +1,60 @@
+
+<p-table [columns]="cols" [value]="vehiculos" selectionMode="single" [(selection)]="vehiculoSeleccionado" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+  <ng-template pTemplate="caption">
+    Lista de Vehículos
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Nuevo"></button>
+    </div>
+  </ng-template>
+</p-table>
+
+<p-dialog header="Formulario" [contentStyle]="{'overflow':'auto','min-width':'600px','max-width':'800px','min-height':'400px','max-height':'400px'}"
+          [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="vehiculo">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="placa">Placa</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="placa" [(ngModel)]="vehiculo.placa" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="color">Placa</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="color" [(ngModel)]="vehiculo.color" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="modelo">Modelo</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="modelo" [(ngModel)]="vehiculo.modelo" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="chasis">Identificación</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="chasis" [(ngModel)]="vehiculo.chasis" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="anio">Identificación</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="anio" [(ngModel)]="vehiculo.anio" /></div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="eliminar()" label="Delete"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="crear()" label="Save"></button>
+    </div>
+  </p-footer>
+</p-dialog>
+
+
